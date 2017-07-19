@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using TH.Elections.PollsApi.Models;
 using Newtonsoft.Json;
+using Microsoft.EntityFrameworkCore;
 
 namespace TH.Elections.PollsApi
 {
@@ -31,7 +32,7 @@ namespace TH.Elections.PollsApi
         {
             // Add framework services.
             services.AddMvc().AddJsonOptions(options => options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore);
-            services.AddDbContext<GeneralElection2014Context>();
+            services.AddDbContext<GeneralElection2014Context>(options => options.UseSqlServer(Configuration.GetConnectionString("GeneralElectionDB")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

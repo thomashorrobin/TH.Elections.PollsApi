@@ -11,10 +11,11 @@ namespace TH.Elections.PollsApi.Models
         public virtual DbSet<PollingCompanies> PollingCompanies { get; set; }
         public virtual DbSet<Polls> Polls { get; set; }
 
+        public GeneralElection2014Context(DbContextOptions options) : base(options) { }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-            optionsBuilder.UseSqlServer(@"Server=(LocalDb)\MSSQLLocalDB;Database=GeneralElection2014;Trusted_Connection=True;");
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
