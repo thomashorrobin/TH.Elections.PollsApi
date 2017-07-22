@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TH.Elections.PollsApi.Models;
+using TH.Elections.PollsApi.ViewModels;
 
 namespace TH.Elections.PollsApi.Controllers
 {
@@ -22,9 +23,14 @@ namespace TH.Elections.PollsApi.Controllers
 
         // GET: api/PartyVotingIntentions
         [HttpGet]
-        public IEnumerable<PartyVotingIntentions> GetPartyVotingIntentions()
+        public GraphData GetPartyVotingIntentions()
         {
-            return _context.PartyVotingIntentions;
+            var viewModel = new GraphData();
+            viewModel.Parties = _context.PoliticalParties;
+            viewModel.PollingCompanies = _context.PollingCompanies;
+            viewModel.PVIs = _context.PartyVotingIntentions;
+            viewModel.Polls = _context.Polls;
+            return viewModel;
         }
     }
 }
