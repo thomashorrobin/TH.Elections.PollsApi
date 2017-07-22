@@ -29,7 +29,7 @@ namespace TH.Elections.PollsApi.Controllers
             viewModel.Parties = _context.PoliticalParties;
             viewModel.PollingCompanies = _context.PollingCompanies;
             viewModel.PVIs = _context.PartyVotingIntentions;
-            viewModel.Polls = _context.Polls;
+            viewModel.Polls = _context.Polls.Include(p => p.PollingCompany);
             return viewModel;
         }
     }
